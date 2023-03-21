@@ -17,6 +17,7 @@ This package wraps the [SNS Client - AWS SDK for JavaScript v3](https://docs.aws
                 * [.deleteTopic(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+deleteTopic) ⇒ <code>Promise.&lt;boolean&gt;</code>
                 * [.getTopicAttributes(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+getTopicAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
                 * [.publish(options)](#module_wrapped-sns-client.WrappedSnsClient+publish) ⇒ <code>Promise.&lt;string&gt;</code>
+                * [.publishCrud2Topic(record, topicArn)](#module_wrapped-sns-client.WrappedSnsClient+publishCrud2Topic) ⇒ <code>Promise.&lt;string&gt;</code>
             * _static_
                 * [.decodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes) ⇒ <code>DecodedMessageAttributes</code>
                 * [.encodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.encodeMessageAttributes) ⇒ <code>EncodedMessageAttributes</code>
@@ -38,6 +39,7 @@ Wraps an AWS SNS client to provide standard logging & services.
         * [.deleteTopic(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+deleteTopic) ⇒ <code>Promise.&lt;boolean&gt;</code>
         * [.getTopicAttributes(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+getTopicAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
         * [.publish(options)](#module_wrapped-sns-client.WrappedSnsClient+publish) ⇒ <code>Promise.&lt;string&gt;</code>
+        * [.publishCrud2Topic(record, topicArn)](#module_wrapped-sns-client.WrappedSnsClient+publishCrud2Topic) ⇒ <code>Promise.&lt;string&gt;</code>
     * _static_
         * [.decodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes) ⇒ <code>DecodedMessageAttributes</code>
         * [.encodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.encodeMessageAttributes) ⇒ <code>EncodedMessageAttributes</code>
@@ -110,6 +112,19 @@ Publish message to SNS.
 | [options.subject] | <code>string</code> | [Subject](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sns/interfaces/publishcommandinput.html#subject) |
 | [options.targetArn] | <code>string</code> | [Target ARN](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sns/interfaces/publishcommandinput.html#targetarn) |
 | [options.topicArn] | <code>string</code> | [Topic ARN](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sns/interfaces/publishcommandinput.html#topicarn) |
+
+<a name="module_wrapped-sns-client.WrappedSnsClient+publishCrud2Topic"></a>
+
+#### wrappedSnsClient.publishCrud2Topic(record, topicArn) ⇒ <code>Promise.&lt;string&gt;</code>
+Publish CRUD record to SNS topic.
+
+**Kind**: instance method of [<code>WrappedSnsClient</code>](#module_wrapped-sns-client.WrappedSnsClient)  
+**Returns**: <code>Promise.&lt;string&gt;</code> - Message ID.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| record | <code>object</code> | CRUD record. |
+| topicArn | <code>string</code> | [Topic ARN](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sns/interfaces/publishcommandinput.html#topicarn) |
 
 <a name="module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes"></a>
 
