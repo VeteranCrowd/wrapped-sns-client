@@ -17,13 +17,14 @@ This package wraps the [SNS Client - AWS SDK for JavaScript v3](https://docs.aws
                 * [.deleteTopic(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+deleteTopic) ⇒ <code>Promise.&lt;boolean&gt;</code>
                 * [.getTopicAttributes(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+getTopicAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
                 * [.publish(options)](#module_wrapped-sns-client.WrappedSnsClient+publish) ⇒ <code>Promise.&lt;string&gt;</code>
-                * [.crudOperationHandler(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+crudOperationHandler) ⇒ <code>function</code>
+                * [.crudOperationHandler(topicArn, [indexToken], [getEntity])](#module_wrapped-sns-client.WrappedSnsClient+crudOperationHandler) ⇒ <code>function</code>
             * _static_
                 * [.decodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes) ⇒ <code>DecodedMessageAttributes</code>
                 * [.encodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.encodeMessageAttributes) ⇒ <code>EncodedMessageAttributes</code>
     * _inner_
         * [~DecodedMessageAttributes](#module_wrapped-sns-client..DecodedMessageAttributes) : <code>Object.&lt;string, (string\|number)&gt;</code>
         * [~EncodedMessageAttributes](#module_wrapped-sns-client..EncodedMessageAttributes) : <code>Object.&lt;string, object&gt;</code>
+        * [~GetEntityCallback](#module_wrapped-sns-client..GetEntityCallback) ⇒ <code>string</code>
 
 <a name="module_wrapped-sns-client.WrappedSnsClient"></a>
 
@@ -39,7 +40,7 @@ Wraps an AWS SNS client to provide standard logging & services.
         * [.deleteTopic(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+deleteTopic) ⇒ <code>Promise.&lt;boolean&gt;</code>
         * [.getTopicAttributes(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+getTopicAttributes) ⇒ <code>Promise.&lt;object&gt;</code>
         * [.publish(options)](#module_wrapped-sns-client.WrappedSnsClient+publish) ⇒ <code>Promise.&lt;string&gt;</code>
-        * [.crudOperationHandler(topicArn)](#module_wrapped-sns-client.WrappedSnsClient+crudOperationHandler) ⇒ <code>function</code>
+        * [.crudOperationHandler(topicArn, [indexToken], [getEntity])](#module_wrapped-sns-client.WrappedSnsClient+crudOperationHandler) ⇒ <code>function</code>
     * _static_
         * [.decodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes) ⇒ <code>DecodedMessageAttributes</code>
         * [.encodeMessageAttributes(attributes)](#module_wrapped-sns-client.WrappedSnsClient.encodeMessageAttributes) ⇒ <code>EncodedMessageAttributes</code>
@@ -115,7 +116,7 @@ Publish message to SNS.
 
 <a name="module_wrapped-sns-client.WrappedSnsClient+crudOperationHandler"></a>
 
-#### wrappedSnsClient.crudOperationHandler(topicArn) ⇒ <code>function</code>
+#### wrappedSnsClient.crudOperationHandler(topicArn, [indexToken], [getEntity]) ⇒ <code>function</code>
 Generate a DynamoDB Streams CRUD Operation Lambda event handler.
 
 **Kind**: instance method of [<code>WrappedSnsClient</code>](#module_wrapped-sns-client.WrappedSnsClient)  
@@ -124,6 +125,8 @@ Generate a DynamoDB Streams CRUD Operation Lambda event handler.
 | Param | Type | Description |
 | --- | --- | --- |
 | topicArn | <code>string</code> | [Topic ARN](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sns/interfaces/publishcommandinput.html#topicarn) |
+| [indexToken] | <code>string</code> | Index token. |
+| [getEntity] | <code>GetEntityCallback</code> | get entity callback. |
 
 <a name="module_wrapped-sns-client.WrappedSnsClient.decodeMessageAttributes"></a>
 
@@ -157,6 +160,18 @@ Encode message attributes for SNS.
 
 ### wrapped-sns-client~EncodedMessageAttributes : <code>Object.&lt;string, object&gt;</code>
 **Kind**: inner typedef of [<code>wrapped-sns-client</code>](#module_wrapped-sns-client)  
+<a name="module_wrapped-sns-client..GetEntityCallback"></a>
+
+### wrapped-sns-client~GetEntityCallback ⇒ <code>string</code>
+Extract entity token from index value.
+
+**Kind**: inner typedef of [<code>wrapped-sns-client</code>](#module_wrapped-sns-client)  
+**Returns**: <code>string</code> - Entity token.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| indexValue | <code>string</code> | Index value. |
+
 
 ---
 
